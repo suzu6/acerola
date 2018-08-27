@@ -23,6 +23,11 @@
     margin: 10px 0;
 }
 
+.qrcode {
+  text-align: center;
+  margin: 10px 0;
+}
+
 .rotate { transform: rotate(0); transition: transform .7s; }
 .rotate-reverse { transform: rotate(360deg); transition: transform .7s; }
 

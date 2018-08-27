@@ -24,31 +24,18 @@
         <!-- navbar -->
         <div class="pure-menu pure-menu-horizontal">
             <ul class="pure-menu-list">
-                <li class="pure-menu-item pure-menu-selected"><a href="index.html" class="pure-menu-link">Switch</a></li>
+                <li class="pure-menu-item"><a href="index.html" class="pure-menu-link">Switch</a></li>
                 <li class="pure-menu-item"><a href="chart.html" class="pure-menu-link">Chart</a></li>
-                <li class="pure-menu-item"><a href="QRcode.html" class="pure-menu-link">QRcode</a></li>
+                <li class="pure-menu-item pure-menu-selected"><a href="QRcode.html" class="pure-menu-link">QRcode</a></li>
             </ul>
         </div>
     </div>
     <!-- Controler -->
     <div class="body">
-        <h2>Controler</h2>
-        <div class="card">
-            <img class="pure-img rotate" id="switch-fan-svg" width="60" height="60" src="static/images/fan.svg" />
-            <div class="switchArea">
-                <input type="checkbox" id="switch-fan" onchange="toggle_switch(this)">
-                <label for="switch-fan"><span></span></label>
-                <div id="swImg"></div>
-            </div>
+        <div class="qrcode">
+            <img src="static/images/qrcode.jpg">
         </div>
-        <div class="card">
-            <img class="pure-img rotate" id="switch-light-svg" width="60" height="60" src="static/images/light.svg" />
-            <div class="switchArea">
-                <input type="checkbox" id="switch-light" onchange="toggle_switch(this)">
-                <label for="switch-light"><span></span></label>
-                <div id="swImg"></div>
-            </div>
-        </div>
+        <h2>Acerola URL</h2>
     </div>
     <script>
         var toggle_switch = function(target) {
