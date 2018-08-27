@@ -1,7 +1,13 @@
 .header {
     text-align: center;
+    margin-top: -1.4rem;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: #fcfcfc;
 }
-
+.header h1, p{
+    color: #000;
+}
 
 .body {
     text-align: center;
@@ -78,3 +84,22 @@
     transform      : translateX(90px);    /* 丸も右へ移動       */
     background     : #78bd78;             /* カーソルタブの背景 */
   }
+
+  /* chart */
+
+  .measure{
+      text-align: center;
+      margin: 4px 2rem;
+  }
+  .measure .value{
+      font-size: 3rem;
+  }
+
+  .limits {
+      display: flex;
+      justify-content: center;
+  }
+.limits .measure .value select{
+    font-size: 2rem;
+    height: 3rem;
+}
