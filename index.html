@@ -11,7 +11,7 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" href="static/images/acerola.png">
     <!-- favicon.icoはルートディレクトに配置 -->
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" href="static/css/pure-min.css">
     <link rel="stylesheet" href="static/css/style.css">
 </head>
 
@@ -34,7 +34,7 @@
     <div class="body">
         <h2>Controler</h2>
         <div class="card">
-            <img class="pure-img" width="60" height="60" src="static/images/fan.svg" />
+            <img class="pure-img rotate" id="switch-fan-svg" width="60" height="60" src="static/images/fan.svg" />
             <div class="switchArea">
                 <input type="checkbox" id="switch-fan" onchange="toggle_switch(this)">
                 <label for="switch-fan"><span></span></label>
@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="card">
-            <img class="pure-img" width="60" height="60" src="static/images/light.svg" />
+            <img class="pure-img rotate" id="switch-light-svg" width="60" height="60" src="static/images/light.svg" />
             <div class="switchArea">
                 <input type="checkbox" id="switch-light" onchange="toggle_switch(this)">
                 <label for="switch-light"><span></span></label>
@@ -53,6 +53,11 @@
     <script>
         var toggle_switch = function(target) {
             var data = {'id': target.id, 'checked': target.checked};
+            var svg = document.getElementById(target.id + '-svg');
+            if(target.checked)
+                svg.setAttribute('class', 'pure-img rotate-reverse');
+            else
+                svg.setAttribute('class', 'pure-img rotate');
             console.log(data);
         }
     </script>
