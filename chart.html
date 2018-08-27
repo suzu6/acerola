@@ -18,42 +18,57 @@
 <body>
     <div class="header">
         <h1>Acerola</h1>
-        <h2>Raspberry Pi Controler.</h2>
+        <p>Raspberry Pi Controler.</p>
 
         <!-- navbar -->
         <div class="pure-menu pure-menu-horizontal">
             <ul class="pure-menu-list">
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Switch</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Chart</a></li>
+                <li class="pure-menu-item"><a href="index.html" class="pure-menu-link">Switch</a></li>
+                <li class="pure-menu-item"><a href="chart.html" class="pure-menu-link">Chart</a></li>
                 <li class="pure-menu-item"><a href="#" class="pure-menu-link">Status</a></li>
             </ul>
         </div>
     </div>
     <!-- Controler -->
     <div class="body">
-        <h2>Controler</h2>
-        <div class="card">
-            <img class="pure-img" width="60" height="60" src="static/images/fan.svg" />
-            <div class="switchArea">
-                <input type="checkbox" id="switch-fan" onchange="toggle_switch(this)">
-                <label for="switch-fan"><span></span></label>
-                <div id="swImg"></div>
-            </div>
-        </div>
-        <div class="card">
-            <img class="pure-img" width="60" height="60" src="static/images/light.svg" />
-            <div class="switchArea">
-                <input type="checkbox" id="switch-light" onchange="toggle_switch(this)">
-                <label for="switch-light"><span></span></label>
-                <div id="swImg"></div>
-            </div>
-        </div>
+        <h2>Chart</h2>
+        <canvas id="myChart"></canvas>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script>
-        var toggle_switch = function(target) {
-            var data = {'id': target.id, 'checked': target.checked};
-            console.log(data);
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // 作成したいチャートのタイプ
+            type: 'line',
+
+            // データセットのデータ
+            data: {
+                labels: ["1月", "2月", "3月", "4月", "5月", "6月", "7月"],
+                datasets: [{
+                    label: "計測値",
+                    type: 'line',
+                    // backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [0, 10, 5, 2, 20, 30, 45],
+                }]
+            },
+
+            // ここに設定オプションを書きます
+            options: {}
+        });
+        function addData(chart, label, data) {
+            chart.data.labels.push(label);
+            chart.data.datasets.forEach((dataset) => {
+                dataset.data.push(data);
+            });
+            chart.update();
         }
+
+        window.onload = function () {
+            // 読み込み完了時に実行する内容
+            addData(chart, 8 + '月', 8);
+        };
     </script>
 </body>
 
