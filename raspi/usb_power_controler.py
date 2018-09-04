@@ -14,14 +14,12 @@ firebase = firebase.FirebaseApplication(
 )
 
 while counter < 10:
-	time.sleep(5)
-	turnon = firebase.get('/devices/light/power', None)
-	print turnon
+    time.sleep(5)
+    turnon = firebase.get('/devices/light/power', None)
+    print turnon
 
-	if turnon :
-		subprocess.call(["sh", "./usb_turn_on.sh"])
-	else :
-		subprocess.call(["sh", "./usb_turn_off.sh"])
-	counter += 1
-
-
+    if turnon:
+        subprocess.call(["sh", "./usb_turn_on.sh"])
+    else:
+        subprocess.call(["sh", "./usb_turn_off.sh"])
+    counter += 1
