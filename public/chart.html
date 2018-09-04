@@ -1,0 +1,211 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Acerola</title>
+    <meta name="description" content="説明文">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Raspberry Pi Controler.">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" href="static/images/acerola.png">
+    <!-- favicon.icoはルートディレクトに配置 -->
+    <link rel="stylesheet" href="static/css/pure-min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1><img style="width:2em; height:2rem;" src="static/images/acerola.svg"> Acerola
+        </h1>
+        <p>Raspberry Pi Controler.</p>
+
+        <!-- navbar -->
+        <div class="pure-menu pure-menu-horizontal">
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><a href="index.html" class="pure-menu-link">Switch</a></li>
+                <li class="pure-menu-item pure-menu-selected"><a href="chart.html" class="pure-menu-link">Chart</a></li>
+                <li class="pure-menu-item"><a href="qrcode.html" class="pure-menu-link">qrcode</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Controler -->
+    <div class="body">
+        <canvas id="myChart"></canvas>
+
+        <div class="measure">
+            <span class="head" style="color: rgb(0, 199, 189)">●</span>
+            <span>計測値</span>
+            <div>
+                <span class="value">12</span>
+            </div>
+        </div>
+        <div class="limits">
+            <div class="measure">
+                <span class="head" style="color: rgb(199, 0, 11)">●</span>
+                <span>上限値</span>
+                <div>
+                    <span class="value">
+                        <select id="max_limit" class="pure-input-1-2" onchange="change_selector(this)">
+                        </select>
+                    </span>
+                </div>
+            </div>
+            <div class="measure">
+                <span class="head" style="color: rgb(199, 189, 0)">●</span>
+                <span>下限値</span>
+                <div>
+                    <span class="value">
+                        <select id="min_limit" class="pure-input-1-2" onchange="change_selector(this)">
+                        </select>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script>
+
+
+        {
+            var init_selectors = function () {
+                var init_selector = function (selector_id, start, end, step) {
+                    var select = document.getElementById(selector_id);
+                    console.log(selector_id, select);
+
+                    for (let i = end; start < i; i -= step) {
+                        i = Math.round(i * 10) / 10;
+                        var option = document.createElement('option');
+                        // option要素のvalue属性に値をセット
+                        option.setAttribute('value', i);
+                        // option要素に値をセット
+                        option.innerHTML = i;
+                        // 作成したoption要素をselectタグに追加
+                        select.appendChild(option);
+                    }
+                }
+                init_selector('min_limit', -0.1, 0.4, 0.1);
+                init_selector('max_limit', 0.7, 1.2, 0.1);
+            };
+
+
+            // 上下限値
+            var limits = {
+                max: { id: 'max_limit', val: 1.0 },
+                min: { id: 'min_limit', val: 0.1 }
+            };
+
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                // 作成したいチャートのタイプ
+                type: 'line',
+                // データセットのデータ
+                data: {
+                    datasets: [{
+                        id: "measure",
+                        label: "計測値",
+                        type: 'line',
+                        borderColor: 'rgb(0, 199, 189)',
+                        backgroundColor: 'rgb(0, 199, 189)',
+                        fill: false,// 塗りつぶしなし
+                        data: [{
+                            t: new Date(),
+                            y: Math.random()
+                        }],
+                    },
+                    {
+                        id: limits.max.id,
+                        label: "上限",
+                        type: 'line',
+                        borderColor: 'rgb(199, 0, 11)',
+                        backgroundColor: 'rgb(199, 0, 11)',
+                        fill: false, // 塗りつぶしなし
+                        pointRadius: 0, // 点なし
+                        data: [limits.max.val],
+                    }, {
+                        id: limits.min.id,
+                        label: "下限",
+                        type: 'line',
+                        borderColor: 'rgb(199, 189, 0)',
+                        backgroundColor: 'rgb(199, 189, 0)',
+                        fill: false, // 塗りつぶしなし
+                        pointRadius: 0, // 点なし
+                        data: [limits.min.val],
+                    }]
+                },
+
+                // ここに設定オプションを書きます
+                options: {
+
+                }
+            });
+            /*
+             * 上下限値を変更する
+             */
+            function addData(chart, label, data) {
+                chart.data.labels.push(label);
+                chart.data.datasets.forEach((dataset) => {
+                    if (dataset.id == 'measure')
+                        dataset.data.push(data);
+                    if (dataset.id == limits.max.id)
+                        dataset.data.push(limits.max.val);
+                    if (dataset.id == limits.min.id)
+                        dataset.data.push(limits.min.val);
+                });
+                chart.update();
+            }
+
+            /*
+             * 上下限値を変更する
+             */
+            function changelimit(chart, limits) {
+                chart.data.datasets.forEach((dataset) => {
+                    if (dataset.id == limits.max.id) {
+                        for (let i = 0; i < dataset.data.length; i++)
+                            dataset.data[i] = limits.max.val;
+                    }
+                    if (dataset.id == limits.min.id) {
+                        for (let i = 0; i < dataset.data.length; i++)
+                            dataset.data[i] = limits.min.val;
+                    }
+                });
+                chart.update();
+            }
+            var change_selector = function (element) {
+                var id = element.id;
+                console.log(id, parseFloat(element.value));
+                if (id == limits.max.id) {
+                    limits.max.val = parseFloat(element.value);
+                } else {
+                    limits.min.val = parseFloat(element.value);
+                }
+                changelimit(chart, limits);
+            };
+
+            var now = moment();
+
+            window.onload = function () {
+                init_selectors();
+
+                console.log(chart);
+                // 読み込み完了時に実行する内容
+                for (let i = 1; i < 20; i++) {
+                    now = moment().add(i, 'minutes');
+                    var f_now = now.format('hh:mm:ss');
+                    addData(chart, f_now, { t: new Date(now), y: Math.random() });
+                };
+
+                limits.min.val = 0.2;
+                changelimit(chart, limits);
+
+            };
+        }
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html class="no-js" lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Acerola</title>
+    <meta name="description" content="説明文">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Raspberry Pi Controler.">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" href="static/images/acerola.png">
+    <!-- favicon.icoはルートディレクトに配置 -->
+    <link rel="stylesheet" href="static/css/pure-min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1><img style="width:2em; height:2rem;" src="static/images/acerola.svg">
+            Acerola</h1>
+        <p>Raspberry Pi Controler.</p>
+
+        <!-- navbar -->
+        <div class="pure-menu pure-menu-horizontal">
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><a href="index.html" class="pure-menu-link">Switch</a></li>
+                <li class="pure-menu-item"><a href="chart.html" class="pure-menu-link">Chart</a></li>
+                <li class="pure-menu-item pure-menu-selected"><a href="qrcode.html" class="pure-menu-link">qrcode</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Controler -->
+    <div class="body">
+        <div class="qrcode">
+            <img src="static/images/qrcode.jpg">
+        </div>
+        <h2>Acerola URL</h2>
+    </div>
+    <script>
+        var toggle_switch = function(target) {
+            var data = {'id': target.id, 'checked': target.checked};
+            var svg = document.getElementById(target.id + '-svg');
+            if(target.checked)
+                svg.setAttribute('class', 'pure-img rotate-reverse');
+            else
+                svg.setAttribute('class', 'pure-img rotate');
+            console.log(data);
+        }
+    </script>
+</body>
+
+</html>
