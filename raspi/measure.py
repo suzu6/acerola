@@ -30,7 +30,7 @@ print 'sampling_interval', sampling_interval
 que = []
 stock_num = 10
 
-
+GPIO.setmode(GPIO.BOARD)
 # GPIO.setmode(GPIO.BCM)  # GPIOへアクセスする番号をBCMの番号で指定することを宣言します。
 GPIO.setup(14, GPIO.IN)  # BCMの15番ピン、物理的には10番ピンを出力に設定します。
 
