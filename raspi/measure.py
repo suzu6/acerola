@@ -1,7 +1,7 @@
 # -*- coding: utf-8
 
 from firebase import firebase
-import RPi.GPIO as GPIO
+from bme280_sample import readData
 from datetime import datetime, timedelta
 import time
 
@@ -30,18 +30,13 @@ print 'sampling_interval', sampling_interval
 que = []
 stock_num = 10
 
-GPIO.setmode(GPIO.BOARD)
-# GPIO.setmode(GPIO.BCM)  # GPIOへアクセスする番号をBCMの番号で指定することを宣言します。
-GPIO.setup(14, GPIO.IN)  # BCMの15番ピン、物理的には10番ピンを出力に設定します。
-
-
 try:
     while True:
         time.sleep(5)
 
         now = datetime.now() + timedelta(hours=9)
         key = now.strftime('%Y-%m-%d %H:%M:%S')
-        value = GPIO.input(14)
+        value = readData()
 
         result = firebase.post(url, {key: value})
         print 'post ', result

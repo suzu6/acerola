@@ -1,4 +1,4 @@
-#coding: utf-8
+# coding: utf-8
 
 """https://github.com/SWITCHSCIENCE/BME280/blob/master/Python27/bme280_sample.py
 """
