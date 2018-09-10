@@ -97,3 +97,8 @@ $ pip install smbus2
 
 [第39回「ラズベリーパイで温度・湿度・気圧をまとめて取得！AE-BME280でIC2通信」](https://deviceplus.jp/hobby/raspberrypi_entry_039/)
 [RaspberryPiではじめてのI2C通信〜温度計測編〜](https://qiita.com/kamujun/items/51f85339bfd582b27752)
+
+## setup
+
+$ pyenv virtualenv 3.6.5 acelora-env
+$ pyenv local acelora-env

@@ -30,23 +30,19 @@ print 'sampling_interval', sampling_interval
 que = []
 stock_num = 10
 
-try:
-    while True:
-        time.sleep(5)
+while True:
+    time.sleep(5)
 
-        now = datetime.now() + timedelta(hours=9)
-        key = now.strftime('%Y-%m-%d %H:%M:%S')
-        value = readData()
+    now = datetime.now() + timedelta(hours=9)
+    key = now.strftime('%Y-%m-%d %H:%M:%S')
+    value = readData()
 
-        result = firebase.post(url, {key: value})
-        print 'post ', result
+    result = firebase.post(url, {key: value})
+    print 'post ', result
 
-        que.append(result['name'])
-        if len(que) > stock_num:
-            # stock数以下のデータを削除
-            key = que.pop(0)
-            result = firebase.delete(url, key)
-            print 'delete ', result
-
-except KeyboardInterrupt:
-    GPIO.cleanup()
+    que.append(result['name'])
+    if len(que) > stock_num:
+        # stock数以下のデータを削除
+        key = que.pop(0)
+        result = firebase.delete(url, key)
+        print 'delete ', result
