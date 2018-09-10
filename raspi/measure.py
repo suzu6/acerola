@@ -35,9 +35,11 @@ while True:
 
     now = datetime.now() + timedelta(hours=9)
     key = now.strftime('%Y-%m-%d %H:%M:%S')
-    value = readData()
+    # only temp
+    value = readData()[0]['value']
+    data = {'t': key, 'y': value}
 
-    result = firebase.post(url, {key: value})
+    result = firebase.post(url, data)
     print 'post ', result
 
     que.append(result['name'])

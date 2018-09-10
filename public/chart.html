@@ -66,6 +66,35 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBIEd9fClLcTuzoyZuQiE_5Ve_SQTIw7T8",
+            authDomain: "acerola-4cf84.firebaseapp.com",
+            databaseURL: "https://acerola-4cf84.firebaseio.com",
+            projectId: "acerola-4cf84",
+            storageBucket: "acerola-4cf84.appspot.com",
+            messagingSenderId: "99645677488"
+        };
+        firebase.initializeApp(config);
+        // Get a reference to the database service
+        // var database = firebase.database();
+        // 既存メッセージを表示
+        var temp_data = [];
+        firebase.database().ref("measure/fan").on("value", function (snapshot) {
+            if (snapshot.exists()) {
+                snapshot.forEach(function (childSnapshot) {
+                    var index = childSnapshot.val();
+                    console.log(index);
+                    temp_data = {index.o}
+                });
+            } else {
+                console.log('nothing');
+            }
+        });
+
+    </script>
     <script>
 
 
