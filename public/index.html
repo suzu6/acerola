@@ -79,10 +79,6 @@
         init_switch('fan');
         init_switch('light');
 
-
-    </script>
-
-    <script>
         var toggle_switch = function (target) {
             var data = { 'id': target.id, 'name':target.id.split('-')[1], 'checked': target.checked };
             var svg = document.getElementById(target.id + '-svg');
