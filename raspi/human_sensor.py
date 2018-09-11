@@ -40,8 +40,8 @@ while True:
     # only temp
     data = {'t': key, 'y': value}
 
-    result = firebase.post(url, data)
     print 'post ', data
+    result = firebase.post(url, data)
     que.append(result['name'])
 
     if len(que) > stock_num:
