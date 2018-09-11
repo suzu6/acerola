@@ -24,9 +24,10 @@
         <!-- navbar -->
         <div class="pure-menu pure-menu-horizontal">
             <ul class="pure-menu-list">
-                <li class="pure-menu-item"><a href="index.html" class="pure-menu-link">Switch</a></li>
+                <li class="pure-menu-item"><a href="index.html" class="pure-menu-link">スイッチ</a></li>
                 <li class="pure-menu-item"><a href="fan.html" class="pure-menu-link">温度</a></li>
-                <li class="pure-menu-item"><a href="light.html" class="pure-menu-link">照度</a></li>
+                <li class="pure-menu-item"><a href="light.html" class="pure-menu-link">リモコン</a></li>
+                <li class="pure-menu-item"><a href="light2.html" class="pure-menu-link">人感センサ</a></li>
                 <li class="pure-menu-item pure-menu-selected"><a href="qrcode.html" class="pure-menu-link">QRコード</a></li>
             </ul>
         </div>
@@ -39,10 +40,10 @@
         <h2>Acerola URL</h2>
     </div>
     <script>
-        var toggle_switch = function(target) {
-            var data = {'id': target.id, 'checked': target.checked};
+        var toggle_switch = function (target) {
+            var data = { 'id': target.id, 'checked': target.checked };
             var svg = document.getElementById(target.id + '-svg');
-            if(target.checked)
+            if (target.checked)
                 svg.setAttribute('class', 'pure-img rotate-reverse');
             else
                 svg.setAttribute('class', 'pure-img rotate');
