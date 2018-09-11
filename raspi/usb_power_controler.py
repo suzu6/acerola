@@ -20,8 +20,8 @@ while counter < 10:
     print turnon
 
     if turnon:
-        subprocess.call(["sh", "./usb_turn_on.sh"])
+        subprocess.call(["sh", "/home/pi/acerola/raspi/usb_turn_on.sh"])
     else:
-        subprocess.call(["sh", "./usb_turn_off.sh"])
+        subprocess.call(["sh", "/home/pi/acerola/raspi/usb_turn_off.sh"])
     time.sleep(1)
     counter += 1
