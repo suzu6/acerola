@@ -25,7 +25,7 @@ firebase.delete('/measure', target)
 firebase.put('', '/measure', target)
 
 
-GPIO.setmode(GPIO.BOARD)  # to specify which pin numbering system
+GPIO.setmode(GPIO.BCM)  # to specify which pin numbering system
 GPIO.setwarnings(False)  
 GPIO.setup(motion_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(led_pin, GPIO.OUT)
