@@ -46,3 +46,10 @@ sudo pip install python-firebase
 test
 ```sh
 python /home/pi/acerola/raspi/usb_power_controler.py
+
+```
+
+cron
+```
+crontab -e
+@reboot                 /home/pi/acerola/raspi/run_usb.sh
