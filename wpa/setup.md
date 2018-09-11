@@ -21,11 +21,26 @@ lora_GW : 172.20.10.2
 A1 : 172.20.10.10
 A2 : 172.20.10.11
 A3 : 172.20.10.12
-B1 : 172.20.10.5
+B1 : 172.20.10.5 温度センサ bme280
 B2 : 172.20.10.6 人感センサ
 
 繋がらない時
 iPhoneの共有をON/OFFしてみる。
+
+```
+static ip_address=172.20.10.6/24
+static routers=172.20.10.1
+```
+
+## 
+
+pi@raspberrypi:~ $ sudo nano /etc/dhcpcd.conf 
+pi@raspberrypi:~ $ sudo raspi-config
+# 
+pi@raspberrypi:~ $ sudo reboot
+
+ssh-keygen -R raspberrypi.local
+ssh-keygen -R 172.20.10.5
 
 ## git
 
@@ -44,7 +59,15 @@ wget http://www.gniibe.org/oitoite/ac-power-control-by-USB-hub/hub-ctrl.c
 gcc -O2 hub-ctrl.c -o hub-ctrl-armhf-static -lusb -static
 sudo cp hub-ctrl-armhf-static /usr/local/bin/hub-ctrl
 
+```
+## i2c
 
+sudo apt-get install i2c-tools
+pip install smbus2
+
+## firebase
+
+```sh
 # install firebase
 sudo pip install firebase-admin
 sudo pip install python-firebase

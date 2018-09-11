@@ -51,6 +51,14 @@
                 <div id="swImg"></div>
             </div>
         </div>
+        <div class="card">
+            <img class="pure-img rotate" id="switch-light2-svg" width="60" height="60" src="static/images/light.svg" />
+            <div class="switchArea">
+                <input type="checkbox" id="switch-light2" onchange="toggle_switch(this)">
+                <label for="switch-light2"><span></span></label>
+                <div id="swImg"></div>
+            </div>
+        </div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
@@ -80,6 +88,7 @@
         }
         init_switch('fan');
         init_switch('light');
+        init_switch('light2');
 
         var toggle_switch = function (target) {
             var data = { 'id': target.id, 'name': target.id.split('-')[1], 'checked': target.checked };
