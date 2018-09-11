@@ -23,17 +23,12 @@ url = '/measure/' + target
 firebase.delete('/measure', target)
 firebase.put('', '/measure', target)
 
-sampling_interval = firebase.get('/devices/'+target+'/sampling_interval', None)
-print 'sampling_interval', sampling_interval
-
 
 # FIFO
 que = []
 stock_num = 10
 
 while True:
-    time.sleep(5)
-
     now = datetime.now() + timedelta(hours=9)
     key = now.strftime('%Y-%m-%d %H:%M:%S')
     # only temp
@@ -49,3 +44,8 @@ while True:
         key = que.pop(0)
         result = firebase.delete(url, key)
         print 'delete ', result
+
+    sampling_interval = firebase.get(
+        '/devices/'+target+'/sampling_interval', None)
+    print 'sampling_interval', sampling_interval
+    time.sleep(sampling_interval)
