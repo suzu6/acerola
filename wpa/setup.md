@@ -39,7 +39,8 @@ sudo cp hub-ctrl-armhf-static /usr/local/bin/hub-ctrl
 
 
 # install firebase
-pip install firebase-admin
+sudo pip install firebase-admin
+sudo pip install python-firebase
 ```
 
 test
