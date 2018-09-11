@@ -16,7 +16,7 @@ firebase = firebase.FirebaseApplication(
 target = firebase.get('/setting/A1', None)
 
 
-while true:
+while True:
     turnon = firebase.get('/devices/light/power', None)
     print turnon
 
