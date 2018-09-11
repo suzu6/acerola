@@ -30,6 +30,10 @@ GPIO.setwarnings(False)
 GPIO.setup(motion_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 print "-----------------------------------------------------------------------"
 
+# FIFO
+que = []
+stock_num = 10
+
 while True:
     value = GPIO.input(motion_pin)
     now = datetime.now() + timedelta(hours=9)
