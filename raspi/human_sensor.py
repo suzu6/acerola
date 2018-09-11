@@ -1,4 +1,3 @@
-# turns on and off a light emitting diode(LED) depending on motion sensor
 #!/usr/bin/python
 # -*- coding: utf-8
 
