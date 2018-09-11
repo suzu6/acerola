@@ -1,35 +1,55 @@
 # turns on and off a light emitting diode(LED) depending on motion sensor
+#!/usr/bin/python
+# -*- coding: utf-8
 
+from firebase import firebase
+from datetime import datetime, timedelta
 import RPi.GPIO as GPIO  # importing the RPi.GPIO module
 import time  # importing the time module
 
 GPIO.cleanup()  # to clean up at the end of your script
-led_pin = 37  # select the pin for the LED
 motion_pin = 15  # select the pin for the motion sensor
 
+# Initialize the app with a service account, granting admin privileges
+firebase = firebase.FirebaseApplication(
+    'https://acerola-4cf84.firebaseio.com',
+    None
+)
 
-def init():
-    GPIO.setmode(GPIO.BOARD)  # to specify which pin numbering system
-    GPIO.setwarnings(False)
-    GPIO.setup(led_pin, GPIO.OUT)  # declare the led_pin as an output
-    # declare the motion_pin as an input
-    GPIO.setup(motion_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    print("-----------------------------------------------------------------------")
+# 'fan' or 'light'
+target = 'light'
+url = '/measure/' + target
 
-
-def main():
-    while True:
-        value = GPIO.input(motion_pin)
-        if value != 0:  # to read the value of a GPIO pin
-            GPIO.output(led_pin, GPIO.HIGH)  # turn on led
-            time.sleep(2)  # delay 2ms
-            print "LED on"  # print information
-        else:
-            GPIO.output(led_pin, GPIO.LOW)  # turn off led
-            time.sleep(2)  # delay 2ms
-            print "LED off"  # print information
+# initilarize
+firebase.delete('/measure', target)
+firebase.put('', '/measure', target)
 
 
-init()
-main()
+GPIO.setmode(GPIO.BOARD)  # to specify which pin numbering system
+GPIO.setwarnings(False)
+GPIO.setup(motion_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+print "-----------------------------------------------------------------------"
+
+while True:
+    value = GPIO.input(motion_pin)
+    now = datetime.now() + timedelta(hours=9)
+    key = now.strftime('%Y-%m-%d %H:%M:%S')
+    # only temp
+    data = {'t': key, 'y': value}
+
+    result = firebase.post(url, data)
+    print 'post ', result
+    que.append(result['name'])
+
+    if len(que) > stock_num:
+        # stock数以下のデータを削除
+        key = que.pop(0)
+        result = firebase.delete(url, key)
+        print 'delete ', result
+
+    sampling_interval = firebase.get(
+        '/devices/'+target+'/sampling_interval', None)
+    print 'sampling_interval', sampling_interval
+    time.sleep(sampling_interval)
+
 GPIO.cleanup()

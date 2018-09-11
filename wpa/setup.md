@@ -65,6 +65,10 @@ sudo cp hub-ctrl-armhf-static /usr/local/bin/hub-ctrl
 sudo apt-get install i2c-tools
 pip install smbus2
 
+## gpio
+
+pip install rpi.gpio
+
 ## firebase
 
 ```sh
@@ -83,6 +87,6 @@ sudo crontab -e
 @reboot    /home/pi/acerola/raspi/run_usb.sh
 
 # b1
-@reboot    /home/pi/acerola/raspi/run_mesure.sh
+@reboot    /home/pi/acerola/raspi/run_measure.sh
 
 @reboot    /home/pi/acerola/raspi/run_usb.sh
