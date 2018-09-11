@@ -7,7 +7,8 @@ import RPi.GPIO as GPIO  # importing the RPi.GPIO module
 import time  # importing the time module
 
 GPIO.cleanup()  # to clean up at the end of your script
-motion_pin = 35  # select the pin for the motion sensor
+motion_pin = 2  # select the pin for the motion sensor
+led_pin = 4
 
 # Initialize the app with a service account, granting admin privileges
 firebase = firebase.FirebaseApplication(
@@ -24,8 +25,9 @@ firebase.delete('/measure', target)
 firebase.put('', '/measure', target)
 
 
-GPIO.setmode(GPIO.BOARD)  # to specify which pin numbering system
+GPIO.setmode(GPIO.BCM)  # to specify which pin numbering system
 GPIO.setup(motion_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(led_pin, GPIO.OUT)
 print "-----------------------------------------------------------------------"
 
 # FIFO
@@ -38,6 +40,11 @@ while True:
     key = now.strftime('%Y-%m-%d %H:%M:%S')
     # only temp
     data = {'t': key, 'y': value}
+
+    if value != 0:
+        GPIO.output(led_pin, True)
+    else:
+        GPIO.output(led_pin, False)
 
     print 'post ', data
     result = firebase.post(url, data)
