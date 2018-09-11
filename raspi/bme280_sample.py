@@ -1,11 +1,15 @@
+#!/usr/bin/python
 # coding: utf-8
 
 """https://github.com/SWITCHSCIENCE/BME280/blob/master/Python27/bme280_sample.py
 """
 
-
+import sys
+sys.path.append('/home/pi/.local/lib/python2.7/site-packages')
 from smbus2 import SMBus
 import time
+
+
 
 bus_number = 1
 i2c_address = 0x76

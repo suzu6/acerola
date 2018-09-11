@@ -81,3 +81,8 @@ python /home/pi/acerola/raspi/usb_power_controler.py
 sudo crontab -e
 
 @reboot    /home/pi/acerola/raspi/run_usb.sh
+
+# b1
+@reboot    /home/pi/acerola/raspi/run_mesure.sh
+
+@reboot    /home/pi/acerola/raspi/run_usb.sh
