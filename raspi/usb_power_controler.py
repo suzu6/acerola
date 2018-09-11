@@ -17,13 +17,13 @@ target = firebase.get('/setting/A1', None)
 
 
 while True:
-    turnon = firebase.get('/devices/light/power', None)
-    print turnon
+    turnon = firebase.get(f'/devices/{target}/power', None)
+    print target, turnon
 
     if turnon:
         subprocess.call(["sh", "/home/pi/acerola/raspi/usb_turn_on.sh"])
     else:
         subprocess.call(["sh", "/home/pi/acerola/raspi/usb_turn_off.sh"])
     # interval
-    sleep = firebase.get('/devices/light/catch_interval', None)
+    sleep = firebase.get(f'/devices/{target}/catch_interval', None)
     time.sleep(sleep)
