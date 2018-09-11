@@ -41,7 +41,7 @@ while True:
     data = {'t': key, 'y': value}
 
     result = firebase.post(url, data)
-    print 'post ', result
+    print 'post ', data
     que.append(result['name'])
 
     if len(que) > stock_num:
