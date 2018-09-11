@@ -4,8 +4,7 @@ from firebase import firebase
 import subprocess
 import time
 
-counter = 0
-turnon = True
+device = 'A1'
 
 # Initialize the app with a service account, granting admin privileges
 firebase = firebase.FirebaseApplication(
@@ -13,11 +12,11 @@ firebase = firebase.FirebaseApplication(
     None
 )
 
-target = firebase.get('/setting/A1', None)
+target = firebase.get('/setting/'+device, None)
 
 
 while True:
-    turnon = firebase.get(f'/devices/{target}/power', None)
+    turnon = firebase.get('/devices/'+target+'/power', None)
     print target, turnon
 
     if turnon:
@@ -25,5 +24,5 @@ while True:
     else:
         subprocess.call(["sh", "/home/pi/acerola/raspi/usb_turn_off.sh"])
     # interval
-    sleep = firebase.get(f'/devices/{target}/catch_interval', None)
+    sleep = firebase.get('/devices/'+target+'/catch_interval', None)
     time.sleep(sleep)
