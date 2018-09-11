@@ -7,7 +7,7 @@ import RPi.GPIO as GPIO  # importing the RPi.GPIO module
 import time  # importing the time module
 
 GPIO.cleanup()  # to clean up at the end of your script
-motion_pin = 15  # select the pin for the motion sensor
+motion_pin = 10  # select the pin for the motion sensor
 
 # Initialize the app with a service account, granting admin privileges
 firebase = firebase.FirebaseApplication(
