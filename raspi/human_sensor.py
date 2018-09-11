@@ -7,7 +7,7 @@ import RPi.GPIO as GPIO  # importing the RPi.GPIO module
 import time  # importing the time module
 
 GPIO.cleanup()  # to clean up at the end of your script
-motion_pin = 10  # select the pin for the motion sensor
+motion_pin = 35  # select the pin for the motion sensor
 
 # Initialize the app with a service account, granting admin privileges
 firebase = firebase.FirebaseApplication(
@@ -25,7 +25,6 @@ firebase.put('', '/measure', target)
 
 
 GPIO.setmode(GPIO.BOARD)  # to specify which pin numbering system
-GPIO.setwarnings(False)
 GPIO.setup(motion_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 print "-----------------------------------------------------------------------"
 
