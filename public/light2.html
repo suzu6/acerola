@@ -25,21 +25,21 @@
         <div class="pure-menu pure-menu-horizontal">
             <ul class="pure-menu-list">
                 <li class="pure-menu-item"><a href="index.html" class="pure-menu-link">スイッチ</a></li>
-                <li class="pure-menu-item"><a href="fan.html" class="pure-menu-link">温度</a></li>
-                <li class="pure-menu-item"><a href="light.html" class="pure-menu-link">リモコン</a></li>
-                <li class="pure-menu-item pure-menu-selected"><a href="light2.html" class="pure-menu-link">人感センサ</a></li>
+                <li class="pure-menu-item"><a href="fan.html" class="pure-menu-link">扇風機</a></li>
+                <li class="pure-menu-item"><a href="light.html" class="pure-menu-link">ライト１</a></li>
+                <li class="pure-menu-item pure-menu-selected"><a href="light2.html" class="pure-menu-link">ライト２</a></li>
                 <li class="pure-menu-item"><a href="qrcode.html" class="pure-menu-link">QRコード</a></li>
             </ul>
         </div>
     </div>
     <!-- Controler -->
     <div class="body">
-        <h2>照度</h2>
+        <h2>ライト２</h2>
         <div class="card">
-            <img class="pure-img rotate" id="switch-light-svg" width="60" height="60" src="static/images/light.svg" />
+            <img class="pure-img rotate" id="switch-light2-svg" width="60" height="60" src="static/images/light.svg" />
             <div class="switchArea">
-                <input type="checkbox" id="switch-light" onchange="toggle_switch(this)">
-                <label for="switch-light"><span></span></label>
+                <input type="checkbox" id="switch-light2" onchange="toggle_switch(this)">
+                <label for="switch-light2"><span></span></label>
                 <div id="swImg"></div>
             </div>
         </div>
@@ -123,7 +123,7 @@
                 }
             });
         }
-        init_switch('light');
+        init_switch('light2');
 
         var toggle_switch = function (target) {
             var data = { 'id': target.id, 'name': target.id.split('-')[1], 'checked': target.checked };

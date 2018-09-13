@@ -25,16 +25,16 @@
         <div class="pure-menu pure-menu-horizontal">
             <ul class="pure-menu-list">
                 <li class="pure-menu-item"><a href="index.html" class="pure-menu-link">スイッチ</a></li>
-                <li class="pure-menu-item"><a href="fan.html" class="pure-menu-link">温度</a></li>
-                <li class="pure-menu-item pure-menu-selected"><a href="light.html" class="pure-menu-link">リモコン</a></li>
-                <li class="pure-menu-item"><a href="light2.html" class="pure-menu-link">人感センサ</a></li>
+                <li class="pure-menu-item"><a href="fan.html" class="pure-menu-link">扇風機</a></li>
+                <li class="pure-menu-item pure-menu-selected"><a href="light.html" class="pure-menu-link">ライト１</a></li>
+                <li class="pure-menu-item"><a href="light2.html" class="pure-menu-link">ライト２</a></li>
                 <li class="pure-menu-item"><a href="qrcode.html" class="pure-menu-link">QRコード</a></li>
             </ul>
         </div>
     </div>
     <!-- Controler -->
     <div class="body">
-        <h2>リモコン</h2>
+        <h2>ライト１</h2>
         <div class="card">
             <img class="pure-img rotate" id="switch-light-svg" width="60" height="60" src="static/images/light.svg" />
             <div class="switchArea">
@@ -94,7 +94,7 @@
         // 既存メッセージを表示
         var temp_data = [];
         var hash = [];
-        firebase.database().ref("measure/fan").on("value", function (snapshot) {
+        firebase.database().ref("measure/light").on("value", function (snapshot) {
             if (snapshot.exists()) {
                 snapshot.forEach(function (childSnapshot) {
                     if (hash.indexOf(childSnapshot.key) == -1) {
@@ -163,16 +163,16 @@
                         select.appendChild(option);
                     }
                 }
-                init_selector('min_limit', 10, 28, 2, 20);
-                init_selector('max_limit', 20, 38, 2, 30);
+                init_selector('min_limit', -1, 0.2, 0.2, 0.0);
+                init_selector('max_limit', 0.6, 1.4, 0.2, 1.0);
                 changelimit(chart, limits);
             };
 
 
             // 上下限値
             var limits = {
-                max: { id: 'max_limit', val: 30.0 },
-                min: { id: 'min_limit', val: 20.0 }
+                max: { id: 'max_limit', val: 1.0 },
+                min: { id: 'min_limit', val: 0.0 }
             };
 
             var ctx = document.getElementById('myChart').getContext('2d');

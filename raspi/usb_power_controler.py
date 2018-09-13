@@ -15,14 +15,20 @@ firebase = firebase.FirebaseApplication(
 target = firebase.get('/setting/'+device, None)
 
 
-while True:
-    turnon = firebase.get('/devices/'+target+'/power', None)
-    print target, turnon
+try:
+    while True:
+        turnon = firebase.get('/devices/'+target+'/power', None)
+        print target, turnon
 
-    if turnon:
-        subprocess.call(["sh", "/home/pi/acerola/raspi/usb_turn_on.sh"])
-    else:
-        subprocess.call(["sh", "/home/pi/acerola/raspi/usb_turn_off.sh"])
-    # interval
-    sleep = firebase.get('/devices/'+target+'/catch_interval', None)
-    time.sleep(sleep)
+        if turnon:
+            subprocess.call(["sh", "/home/pi/acerola/raspi/usb_turn_on.sh"])
+        else:
+            subprocess.call(["sh", "/home/pi/acerola/raspi/usb_turn_off.sh"])
+        # interval
+        sleep = firebase.get('/devices/'+target+'/catch_interval', None)
+        time.sleep(sleep)
+
+except expression as identifier:
+    print 'has error'
+
+subprocess.call(["sh", "/home/pi/acerola/raspi/run_usb.sh"])
