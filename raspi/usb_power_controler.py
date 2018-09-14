@@ -28,7 +28,7 @@ try:
         sleep = firebase.get('/devices/'+target+'/catch_interval', None)
         time.sleep(sleep)
 
-except expression as identifier:
+except:
     print 'has error'
 
 subprocess.call(["sh", "/home/pi/acerola/raspi/run_usb.sh"])
