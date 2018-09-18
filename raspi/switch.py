@@ -36,7 +36,7 @@ while True:
     time.sleep(1)
 
     value = GPIO.input(motion_pin)
-    print target, value, GPIO.HIGH
+    print target, ' switch : ' + value
 
     if value == GPIO.HIGH and not done:
         # switch on and not toggle power yet
@@ -46,7 +46,7 @@ while True:
         GPIO.output(led_pin, turnon)
         turnon = firebase.put('', '/devices/'+target+'/power', turnon)
         done = True
-        print target + ' is turn ' + 'on' if turnon else 'off'
+        print target + ' is turn on' if turnon else target + ' is turn off'
     elif value == 0:
         # switch off or done toggle power
         done = False
