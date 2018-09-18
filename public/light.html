@@ -163,16 +163,16 @@
                         select.appendChild(option);
                     }
                 }
-                init_selector('min_limit', -1, 0.2, 0.2, 0.0);
-                init_selector('max_limit', 0.6, 1.4, 0.2, 1.0);
+                init_selector('min_limit', 0, 30, 2, 10.0);
+                init_selector('max_limit', 20, 30, 2, 30.0);
                 changelimit(chart, limits);
             };
 
 
             // 上下限値
             var limits = {
-                max: { id: 'max_limit', val: 1.0 },
-                min: { id: 'min_limit', val: 0.0 }
+                max: { id: 'max_limit', val: 30.0 },
+                min: { id: 'min_limit', val: 10.0 }
             };
 
             var ctx = document.getElementById('myChart').getContext('2d');

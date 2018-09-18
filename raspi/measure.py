@@ -53,7 +53,7 @@ try:
         print 'sampling_interval', sampling_interval
         time.sleep(sampling_interval)
 
-except expression as identifier:
+except:
     print 'has error'
     firebase.put('', '/devices/'+target+'/isError', True)
 finally:
