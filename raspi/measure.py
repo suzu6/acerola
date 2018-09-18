@@ -57,4 +57,5 @@ except expression as identifier:
     print 'has error'
     firebase.put('', '/devices/'+target+'/isError', True)
 finally:
-    subprocess.call(["sh", "/home/pi/acerola/raspi/run_measure.sh"])
+    print 'call run_measure.sh'
+    # subprocess.call(["sh", "/home/pi/acerola/raspi/run_measure.sh"])
