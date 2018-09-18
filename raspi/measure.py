@@ -30,7 +30,7 @@ que = []
 stock_num = 10
 
 try:
-    firebase.post('/devices/'+target+'/isError', False)
+    firebase.put('', '/devices/'+target+'/isError', False)
     while True:
         now = datetime.now() + timedelta(hours=9)
         key = now.strftime('%Y-%m-%d %H:%M:%S')
@@ -55,6 +55,6 @@ try:
 
 except expression as identifier:
     print 'has error'
-    firebase.put('/devices/'+target+'/isError', True)
+    firebase.put('', '/devices/'+target+'/isError', True)
 finally:
     subprocess.call(["sh", "/home/pi/acerola/raspi/run_measure.sh"])
