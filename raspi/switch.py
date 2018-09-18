@@ -36,7 +36,7 @@ while True:
     time.sleep(1)
 
     value = GPIO.input(motion_pin)
-    print target, ' switch : ' + value
+    print target, ' switch : ' + str(value)
 
     if value == GPIO.HIGH and not done:
         # switch on and not toggle power yet
