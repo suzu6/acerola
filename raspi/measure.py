@@ -21,7 +21,7 @@ target = 'fan'
 url = '/measure/' + target
 
 # initilarize
-firebase.delete('/measure', target)
+firebase.delete('/measure/' + target, target)
 firebase.put('', '/measure', target)
 
 
