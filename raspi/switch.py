@@ -47,7 +47,7 @@ while True:
         turnon = firebase.put('', '/devices/'+target+'/power', turnon)
         done = True
         print target + ' is turn ' + 'on' if turnon else 'off'
-    else:
+    elif value == GPIO.LOW:
         # switch off or done toggle power
         done = False
 
