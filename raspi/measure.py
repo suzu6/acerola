@@ -21,7 +21,7 @@ target = 'fan'
 url = '/measure/' + target
 
 # initilarize
-firebase.delete('/measure/' + target, target)
+firebase.delete('/measure/', target)
 firebase.put('', '/measure', target)
 
 
@@ -39,7 +39,7 @@ try:
         data = {'t': key, 'y': value}
 
         result = firebase.post(url, data)
-        print 'post ', result
+        print 'post ', data
 
         que.append(result['name'])
         if len(que) > stock_num:
