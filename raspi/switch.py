@@ -9,8 +9,8 @@ import RPi.GPIO as GPIO  # importing the RPi.GPIO module
 device = 'A1'
 
 GPIO.cleanup()  # to clean up at the end of your script
-motion_pin = 14
-led_pin = 15
+motion_pin = 15
+led_pin = 14
 
 GPIO.setmode(GPIO.BCM)  # to specify which pin numbering system
 GPIO.setwarnings(False)
@@ -36,7 +36,7 @@ while True:
     time.sleep(1)
 
     value = GPIO.input(motion_pin)
-    print target, value
+    print target, value, GPIO.HIGH
 
     if value == GPIO.HIGH and not done:
         # switch on and not toggle power yet
