@@ -44,7 +44,7 @@ while True:
         # 反転
         turnon = not turnon
         GPIO.output(led_pin, turnon)
-        turnon = firebase.put('/devices/'+target+'/power', turnon)
+        turnon = firebase.put('', '/devices/'+target+'/power', turnon)
         done = True
         print target + ' is turn ' + 'on' if turnon else 'off'
     else:
