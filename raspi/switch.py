@@ -9,8 +9,8 @@ import RPi.GPIO as GPIO  # importing the RPi.GPIO module
 device = 'A1'
 
 GPIO.cleanup()  # to clean up at the end of your script
-motion_pin = 15
-led_pin = 14
+motion_pin = 14
+led_pin = 15
 
 GPIO.setmode(GPIO.BCM)  # to specify which pin numbering system
 GPIO.setwarnings(False)
